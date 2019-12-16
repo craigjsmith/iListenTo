@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class = "title row">
+            <div class = "col">
+                <h1 class = "head">i Listen To</h1>
+                <h2>Listening Statistics for Spotify</h2>
+            </div>
+        </div>
+        
+        <div class = "row toggle">
+            <div class = "col">
+                <div class="btn-group" role="group">
+                    <button type="button" id = "short_btn" class="btn btn-outline-success active">Short</button>
+                    <button type="button" id = "medium_btn" class="btn btn-outline-success">Medium</button>
+                    <button type="button" id = "long_btn" class="btn btn-outline-success">Long</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="section col-5">
+                <h1>My Top Artists</h1>
+                
+                <div id = "root"></div>
+            </div>
+
+
+
+            <div class="section col-5 offset-2">
+                <h1>My Top Tracks</h1>
+                
+                <div id = "root2"></div>
+            </div>
+        </div>
+    </div>
+    
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js".--> 
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    
+    
+  <!-- Load our React component.--> 
+  <script src="react.js" type="text/javascript"></script>
+    
+    <script>
+    document.getElementById("short_btn").addEventListener("click", function(){
+        document.getElementById("short_btn").classList.add("active");
+        document.getElementById("medium_btn").classList.remove("active");
+        document.getElementById("long_btn").classList.remove("active");
+        getArtistsShort();
+    }); 
+
+    document.getElementById("medium_btn").addEventListener("click", function(){
+        document.getElementById("medium_btn").classList.add("active");
+        document.getElementById("short_btn").classList.remove("active");
+        document.getElementById("long_btn").classList.remove("active");
+        getArtistsMedium();
+    }); 
+        
+    document.getElementById("long_btn").addEventListener("click", function(){
+        document.getElementById("long_btn").classList.add("active");
+        document.getElementById("short_btn").classList.remove("active");
+        document.getElementById("medium_btn").classList.remove("active");
+        getArtistsLong();
+    });     
+    </script>
+    
+</body>
+    
+<footer>
+    <h4>Created by <a href = "https://craigsmith.dev">Craig Smith</a></h4>
+    <h5>Data is collected from the Spotify Web API. This site is not affiliated with Spotify AB</h5>
+</footer>
+
+</html>

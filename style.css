@@ -1,0 +1,93 @@
+body {
+    background-color: #191414 !important;
+}
+
+footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+h1 {
+    text-align: center !important;
+    color: #1DB954 !important;
+}
+
+.head {
+    font-size: 50pt !important;
+}
+
+
+h2 {
+    text-align: center;
+    color: white !important;
+    font-size: 16pt !important;
+}
+
+h4 {
+    color: white !important;
+    font-size: 16pt;
+    text-align: center;
+}
+
+h5 {
+    color: white !important;
+    font-size: 10pt !important;
+    text-align: center;
+}
+
+a {
+    color: #1DB954 !important;
+    text-decoration: underline !important;
+    text-decoration-style: dotted !important;
+}
+
+a:hover {
+    color: #137d38 !important;
+}
+
+.trackArtist {
+    color: darkgray !important;
+    font-size: 12pt;
+    padding-left: 20px;   
+    width: 100%;    
+}
+
+.text {
+    font-size: 18pt;
+    color: white !important;
+    display: flex; 
+    text-align: left;
+    align-items: center;  /*Aligns vertically center */ 
+    padding-left: 20px;    
+}
+
+.title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #282828;
+    height: auto;
+}
+
+.tile {
+    display: flex; 
+    height: 100px;
+    padding-left: 50px;
+    margin-top: 25px;
+}
+
+.artist_img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.toggle {
+    text-align: center;
+    margin-bottom: 25px;
+}
