@@ -2,6 +2,8 @@ var artists_list = [];
 var artists_pics = [];
 var tracks_list = [];
 
+var user;
+
 // Extract hash from callback URL
 var hash = window.location.hash.substring(1).split('&').reduce(function (initial, item) {
     if (item) {
@@ -26,6 +28,25 @@ function getToken() {
     if (!_token) {
         window.location = 'https://accounts.spotify.com/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&scope=' + scopes.join('%20') + '&response_type=token&show_dialog=true';
     }
+}
+
+getUser();
+function getUser() {
+    $.ajax({
+        url: "https://api.spotify.com/v1/me",
+        type: "GET",
+        beforeSend: function beforeSend(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
+        },
+        success: function success(data) {
+            var name = data.display_name;
+            var pic = data.images[0].url;
+
+            user = { name: name, pic: pic };
+
+            console.log(user.name);
+        }
+    });
 }
 
 function getArtistsShort() {
@@ -175,6 +196,36 @@ function Artist(props) {
     );
 }
 
+function User(props) {
+    return React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'div',
+            { className: 'row' },
+            React.createElement(
+                'div',
+                { className: 'col-12 tile entry' },
+                React.createElement('img', { src: props.pic, className: 'artist_img' }),
+                ' ',
+                React.createElement(
+                    'h2',
+                    { className: 'text2' },
+                    props.name,
+                    ' ',
+                    React.createElement('br', null),
+                    ' ',
+                    React.createElement(
+                        'a',
+                        { 'class': 'logout', href: 'javascript:history.go(0)' },
+                        '(Logout)'
+                    )
+                )
+            )
+        )
+    );
+}
+
 function Track(props) {
     return React.createElement(
         'div',
@@ -245,27 +296,36 @@ function populate() {
 
     ReactDOM.render(React.createElement(
         'div',
-        { className: 'row toggle' },
+        null,
         React.createElement(
             'div',
-            { className: 'col' },
+            { className: 'row justify-content-center' },
+            React.createElement(User, { name: user.name, pic: user.pic })
+        ),
+        React.createElement(
+            'div',
+            { className: 'row toggle' },
             React.createElement(
                 'div',
-                { className: 'btn-group', role: 'group' },
+                { className: 'col' },
                 React.createElement(
-                    'button',
-                    { type: 'button', id: 'short_btn', onClick: shortbtn, className: 'btn btn-outline-success active' },
-                    'Short'
-                ),
-                React.createElement(
-                    'button',
-                    { type: 'button', id: 'medium_btn', onClick: mediumbtn, className: 'btn btn-outline-success' },
-                    'Medium'
-                ),
-                React.createElement(
-                    'button',
-                    { type: 'button', id: 'long_btn', onClick: longbtn, className: 'btn btn-outline-success' },
-                    'Long'
+                    'div',
+                    { className: 'btn-group', role: 'group' },
+                    React.createElement(
+                        'button',
+                        { type: 'button', id: 'short_btn', onClick: shortbtn, className: 'btn btn-outline-success active' },
+                        '4 weeks'
+                    ),
+                    React.createElement(
+                        'button',
+                        { type: 'button', id: 'medium_btn', onClick: mediumbtn, className: 'btn btn-outline-success' },
+                        '6 months'
+                    ),
+                    React.createElement(
+                        'button',
+                        { type: 'button', id: 'long_btn', onClick: longbtn, className: 'btn btn-outline-success' },
+                        'All time'
+                    )
                 )
             )
         )

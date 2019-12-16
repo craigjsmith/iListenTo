@@ -2,6 +2,8 @@ var artists_list = [];
 var artists_pics = [];
 var tracks_list = [];
 
+var user;
+
 // Extract hash from callback URL
 const hash = window.location.hash
 .substring(1)
@@ -31,6 +33,23 @@ function getToken() {
     if (!_token) {
       window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
     }
+}
+
+getUser();
+function getUser() {
+    $.ajax({
+       url: "https://api.spotify.com/v1/me",
+       type: "GET",
+       beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+       success: function(data) { 
+           var name = data.display_name;
+           var pic = data.images[0].url; 
+           
+           user = {name:name, pic:pic};
+           
+           console.log(user.name);
+       }
+    });
 }
 
 function getArtistsShort() {
@@ -160,6 +179,18 @@ function Artist(props) {
     );
 }
 
+function User(props) {
+    return (    
+        <div>
+        <div className="row">
+            <div className = "col-12 tile entry">
+                <img src={props.pic} className="artist_img" /> <h2 className="text2">{props.name} <br></br> <a class = "logout" href = "javascript:history.go(0)">(Logout)</a></h2>
+            </div>
+        </div>  
+            </div>
+    );
+}
+
 function Track(props) {
     return (     
         <div className="row">
@@ -209,14 +240,21 @@ function populate() {
     );
     
     ReactDOM.render(
+        
+        <div>
+        <div className = "row justify-content-center">
+            <User name={user.name} pic={user.pic}/>
+        </div>
+        
         <div className = "row toggle">
             <div className = "col">
                 <div className="btn-group" role="group">
-                    <button type="button" id = "short_btn" onClick = {shortbtn} className="btn btn-outline-success active">Short</button>
-                    <button type="button" id = "medium_btn" onClick = {mediumbtn} className="btn btn-outline-success">Medium</button>
-                    <button type="button" id = "long_btn" onClick = {longbtn} className="btn btn-outline-success">Long</button>
+                    <button type="button" id = "short_btn" onClick = {shortbtn} className="btn btn-outline-success active">4 weeks</button>
+                    <button type="button" id = "medium_btn" onClick = {mediumbtn} className="btn btn-outline-success">6 months</button>
+                    <button type="button" id = "long_btn" onClick = {longbtn} className="btn btn-outline-success">All time</button>
                 </div>
             </div>
+        </div>
         </div>,
       document.getElementById('root4'),  
     );     
