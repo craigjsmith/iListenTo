@@ -30,7 +30,7 @@ function getToken() {
 
 function getArtistsShort() {
     $.ajax({
-        url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=10",
+        url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term",
         type: "GET",
         beforeSend: function beforeSend(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
@@ -54,7 +54,7 @@ function getArtistsShort() {
 
 function getArtistsMedium() {
     $.ajax({
-        url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10",
+        url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term",
         type: "GET",
         beforeSend: function beforeSend(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
@@ -78,7 +78,7 @@ function getArtistsMedium() {
 
 function getArtistsLong() {
     $.ajax({
-        url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10",
+        url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term",
         type: "GET",
         beforeSend: function beforeSend(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
@@ -102,7 +102,7 @@ function getArtistsLong() {
 
 function getTracksShort() {
     $.ajax({
-        url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10",
+        url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
         type: "GET",
         beforeSend: function beforeSend(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
@@ -121,7 +121,7 @@ function getTracksShort() {
 
 function getTracksMedium() {
     $.ajax({
-        url: "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10",
+        url: "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term",
         type: "GET",
         beforeSend: function beforeSend(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
@@ -140,7 +140,7 @@ function getTracksMedium() {
 
 function getTracksLong() {
     $.ajax({
-        url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10",
+        url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term",
         type: "GET",
         beforeSend: function beforeSend(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
@@ -160,12 +160,17 @@ function getTracksLong() {
 function Artist(props) {
     return React.createElement(
         'div',
-        { className: 'row tile' },
-        React.createElement('img', { src: props.avatarUrl, className: 'artist_img' }),
+        { className: 'row' },
         React.createElement(
-            'h2',
-            { className: 'text' },
-            props.name
+            'div',
+            { className: 'col tile entry' },
+            React.createElement('img', { src: props.avatarUrl, className: 'artist_img' }),
+            ' ',
+            React.createElement(
+                'h2',
+                { className: 'text' },
+                props.name
+            )
         )
     );
 }
@@ -173,18 +178,28 @@ function Artist(props) {
 function Track(props) {
     return React.createElement(
         'div',
-        { className: 'row tile' },
+        { className: 'row' },
         React.createElement(
-            'h2',
-            { className: 'text' },
-            props.name
-        ),
-        React.createElement('br', null),
-        React.createElement('br', null),
-        React.createElement(
-            'h3',
-            { className: 'trackArtist' },
-            props.artist
+            'div',
+            { className: 'col tile entry' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col' },
+                    React.createElement(
+                        'h2',
+                        { className: 'text' },
+                        props.name
+                    ),
+                    React.createElement(
+                        'h3',
+                        { className: 'text' },
+                        props.artist
+                    )
+                )
+            )
         )
     );
 }

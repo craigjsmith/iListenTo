@@ -23,6 +23,12 @@ h2 {
     font-size: 16pt !important;
 }
 
+h3 {
+    text-align: center;
+    color: gray !important;
+    font-size: 12pt !important;
+}
+
 h4 {
     color: white !important;
     font-size: 16pt;
@@ -45,20 +51,27 @@ a:hover {
     color: #137d38 !important;
 }
 
-.trackArtist {
-    color: darkgray !important;
-    font-size: 12pt;
-    padding-left: 20px;   
-    width: 100%;    
+.entry {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 100px;
+    align-items: center;  /*Aligns vertically center */  
 }
 
 .text {
-    font-size: 18pt;
-    color: white !important;
     display: flex; 
     text-align: left;
-    align-items: center;  /*Aligns vertically center */ 
-    padding-left: 20px;    
+    align-items: center;  /*Aligns vertically center */  
+    padding-left: 15px;
+}
+
+.textSmall {
+    font-size: 10pt;
+    color: gray !important;
+    display: flex; 
+    text-align: left;
+    align-items: center;  /*Aligns vertically center */  
+    padding-left: 15px;
 }
 
 .title {
@@ -71,13 +84,16 @@ a:hover {
     padding-bottom: 20px;
     background-color: #282828;
     height: auto;
+    width: auto;
 }
 
 .tile {
     display: flex; 
     height: 100px;
-    padding-left: 50px;
+    width: auto;
     margin-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .artist_img {

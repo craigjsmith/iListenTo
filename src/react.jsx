@@ -35,7 +35,7 @@ function getToken() {
 
 function getArtistsShort() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=10",
+       url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -57,7 +57,7 @@ function getArtistsShort() {
 
 function getArtistsMedium() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10",
+       url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -79,7 +79,7 @@ function getArtistsMedium() {
 
 function getArtistsLong() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10",
+       url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -101,7 +101,7 @@ function getArtistsLong() {
 
 function getTracksShort() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10",
+       url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -118,7 +118,7 @@ function getTracksShort() {
 
 function getTracksMedium() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10",
+       url: "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -135,7 +135,7 @@ function getTracksMedium() {
 
 function getTracksLong() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10",
+       url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -152,20 +152,25 @@ function getTracksLong() {
 
 function Artist(props) {
     return (     
-        <div className="row tile">
-            <img src={props.avatarUrl} className="artist_img" />
-            <h2 className="text">{props.name}</h2>
+        <div className="row">
+            <div className = "col tile entry">
+                <img src={props.avatarUrl} className="artist_img" /> <h2 className="text">{props.name}</h2>
+            </div>
         </div>  
     );
 }
 
 function Track(props) {
     return (     
-        <div className="row tile">
-            <h2 className="text">{props.name}</h2>
-            <br></br>
-            <br></br>
-            <h3 className = "trackArtist">{props.artist}</h3>
+        <div className="row">
+            <div className = "col tile entry">
+                <div className="row">
+                    <div className = "col">
+                    <h2 className="text">{props.name}</h2> 
+                    <h3 className="text">{props.artist}</h3> 
+                    </div>   
+                </div>
+            </div>
         </div>  
     );
 }
