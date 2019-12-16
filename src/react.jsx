@@ -27,17 +27,19 @@ const scopes = [
 ];
 
 // If there's no token, redirect to Spotify to retrieve one
-if (!_token) {
-  window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+function getToken() {
+    if (!_token) {
+      window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+    }
 }
 
 function getArtistsShort() {
-    reset();
     $.ajax({
        url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=10",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
+           reset();
            for(var i=0; i < data.items.length; i++) {
                artists_list.push(data.items[i].name);
            }   
@@ -52,12 +54,12 @@ function getArtistsShort() {
 }
 
 function getArtistsMedium() {
-    reset();
     $.ajax({
        url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
+           reset();
            for(var i=0; i < data.items.length; i++) {
                artists_list.push(data.items[i].name);
            }   
@@ -178,20 +180,56 @@ function populate() {
         artist={tracks_list[i].artist}
         />);
     }    
-
+    
     ReactDOM.render(
-        <div>
-            {top_artists}
-        </div>,
+            <div className = "section">
+                <h1>My Top Artists</h1>
+                {top_artists}
+            </div>,
       document.getElementById('root'),  
     );
     
     ReactDOM.render(
-        <div>
-            {top_tracks}
-        </div>,
+            <div className="section">
+                <h1>My Top Tracks</h1>
+                {top_tracks}
+            </div>,
       document.getElementById('root2') 
     );
+    
+    ReactDOM.render(
+        <div className = "row toggle">
+            <div className = "col">
+                <div className="btn-group" role="group">
+                    <button type="button" id = "short_btn" onClick = {shortbtn} className="btn btn-outline-success active">Short</button>
+                    <button type="button" id = "medium_btn" onClick = {mediumbtn} className="btn btn-outline-success">Medium</button>
+                    <button type="button" id = "long_btn" onClick = {longbtn} className="btn btn-outline-success">Long</button>
+                </div>
+            </div>
+        </div>,
+      document.getElementById('root4'),  
+    );     
+}
+
+function shortbtn() {
+    document.getElementById("short_btn").classList.add("active");
+    document.getElementById("medium_btn").classList.remove("active");
+    document.getElementById("long_btn").classList.remove("active");
+    getArtistsShort();
+}
+
+function mediumbtn() {
+    document.getElementById("short_btn").classList.remove("active");
+    document.getElementById("medium_btn").classList.add("active");
+    document.getElementById("long_btn").classList.remove("active");
+    getArtistsMedium();
+}
+
+function longbtn() {
+    document.getElementById("short_btn").classList.remove("active");
+    document.getElementById("medium_btn").classList.remove("active");
+    document.getElementById("long_btn").classList.add("active");
+    getArtistsLong();
 }
 
 function reset() {
@@ -199,5 +237,14 @@ function reset() {
     artists_pics = [];
     tracks_list = [];
 }
+
+    ReactDOM.render(
+        <div className = "row" style = {{textAlign: "center"}}>
+            <div className = "col">
+                <button type="button" id = "login_btn" className="btn btn-outline-success active">Connect with Spotify</button>
+            </div>
+        </div>,
+      document.getElementById('root4'),  
+    );
 
 getArtistsShort();

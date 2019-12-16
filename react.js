@@ -22,12 +22,13 @@ var redirectUri = 'http://192.168.2.25:8080';
 var scopes = ['user-top-read'];
 
 // If there's no token, redirect to Spotify to retrieve one
-if (!_token) {
-    window.location = 'https://accounts.spotify.com/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&scope=' + scopes.join('%20') + '&response_type=token&show_dialog=true';
+function getToken() {
+    if (!_token) {
+        window.location = 'https://accounts.spotify.com/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&scope=' + scopes.join('%20') + '&response_type=token&show_dialog=true';
+    }
 }
 
 function getArtistsShort() {
-    reset();
     $.ajax({
         url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=10",
         type: "GET",
@@ -35,6 +36,7 @@ function getArtistsShort() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
+            reset();
             for (var i = 0; i < data.items.length; i++) {
                 artists_list.push(data.items[i].name);
             }
@@ -49,7 +51,6 @@ function getArtistsShort() {
 }
 
 function getArtistsMedium() {
-    reset();
     $.ajax({
         url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10",
         type: "GET",
@@ -57,6 +58,7 @@ function getArtistsMedium() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
+            reset();
             for (var i = 0; i < data.items.length; i++) {
                 artists_list.push(data.items[i].name);
             }
@@ -200,15 +202,74 @@ function populate() {
 
     ReactDOM.render(React.createElement(
         'div',
-        null,
+        { className: 'section' },
+        React.createElement(
+            'h1',
+            null,
+            'My Top Artists'
+        ),
         top_artists
     ), document.getElementById('root'));
 
     ReactDOM.render(React.createElement(
         'div',
-        null,
+        { className: 'section' },
+        React.createElement(
+            'h1',
+            null,
+            'My Top Tracks'
+        ),
         top_tracks
     ), document.getElementById('root2'));
+
+    ReactDOM.render(React.createElement(
+        'div',
+        { className: 'row toggle' },
+        React.createElement(
+            'div',
+            { className: 'col' },
+            React.createElement(
+                'div',
+                { className: 'btn-group', role: 'group' },
+                React.createElement(
+                    'button',
+                    { type: 'button', id: 'short_btn', onClick: shortbtn, className: 'btn btn-outline-success active' },
+                    'Short'
+                ),
+                React.createElement(
+                    'button',
+                    { type: 'button', id: 'medium_btn', onClick: mediumbtn, className: 'btn btn-outline-success' },
+                    'Medium'
+                ),
+                React.createElement(
+                    'button',
+                    { type: 'button', id: 'long_btn', onClick: longbtn, className: 'btn btn-outline-success' },
+                    'Long'
+                )
+            )
+        )
+    ), document.getElementById('root4'));
+}
+
+function shortbtn() {
+    document.getElementById("short_btn").classList.add("active");
+    document.getElementById("medium_btn").classList.remove("active");
+    document.getElementById("long_btn").classList.remove("active");
+    getArtistsShort();
+}
+
+function mediumbtn() {
+    document.getElementById("short_btn").classList.remove("active");
+    document.getElementById("medium_btn").classList.add("active");
+    document.getElementById("long_btn").classList.remove("active");
+    getArtistsMedium();
+}
+
+function longbtn() {
+    document.getElementById("short_btn").classList.remove("active");
+    document.getElementById("medium_btn").classList.remove("active");
+    document.getElementById("long_btn").classList.add("active");
+    getArtistsLong();
 }
 
 function reset() {
@@ -216,5 +277,19 @@ function reset() {
     artists_pics = [];
     tracks_list = [];
 }
+
+ReactDOM.render(React.createElement(
+    'div',
+    { className: 'row', style: { textAlign: "center" } },
+    React.createElement(
+        'div',
+        { className: 'col' },
+        React.createElement(
+            'button',
+            { type: 'button', id: 'login_btn', className: 'btn btn-outline-success active' },
+            'Connect with Spotify'
+        )
+    )
+), document.getElementById('root4'));
 
 getArtistsShort();
