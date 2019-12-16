@@ -36,7 +36,9 @@ function getArtistsShort() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
-            reset();
+            artists_list = [];
+            artists_pics = [];
+
             for (var i = 0; i < data.items.length; i++) {
                 artists_list.push(data.items[i].name);
             }
@@ -58,7 +60,9 @@ function getArtistsMedium() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
-            reset();
+            artists_list = [];
+            artists_pics = [];
+
             for (var i = 0; i < data.items.length; i++) {
                 artists_list.push(data.items[i].name);
             }
@@ -73,7 +77,6 @@ function getArtistsMedium() {
 }
 
 function getArtistsLong() {
-    reset();
     $.ajax({
         url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10",
         type: "GET",
@@ -81,6 +84,9 @@ function getArtistsLong() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
+            artists_list = [];
+            artists_pics = [];
+
             for (var i = 0; i < data.items.length; i++) {
                 artists_list.push(data.items[i].name);
             }
@@ -102,7 +108,7 @@ function getTracksShort() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
-
+            tracks_list = [];
             for (var i = 0; i < data.items.length; i++) {
                 tracks_list.push({ name: data.items[i].name, artist: data.items[i].album.artists[0].name });
             }
@@ -121,7 +127,7 @@ function getTracksMedium() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
-
+            tracks_list = [];
             for (var i = 0; i < data.items.length; i++) {
                 tracks_list.push({ name: data.items[i].name, artist: data.items[i].album.artists[0].name });
             }
@@ -140,7 +146,7 @@ function getTracksLong() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + _token);
         },
         success: function success(data) {
-
+            tracks_list = [];
             for (var i = 0; i < data.items.length; i++) {
                 tracks_list.push({ name: data.items[i].name, artist: data.items[i].album.artists[0].name });
             }
@@ -270,12 +276,6 @@ function longbtn() {
     document.getElementById("medium_btn").classList.remove("active");
     document.getElementById("long_btn").classList.add("active");
     getArtistsLong();
-}
-
-function reset() {
-    artists_list = [];
-    artists_pics = [];
-    tracks_list = [];
 }
 
 ReactDOM.render(React.createElement(

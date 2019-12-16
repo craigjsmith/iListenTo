@@ -39,7 +39,9 @@ function getArtistsShort() {
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
-           reset();
+            artists_list = [];
+            artists_pics = [];
+           
            for(var i=0; i < data.items.length; i++) {
                artists_list.push(data.items[i].name);
            }   
@@ -59,7 +61,9 @@ function getArtistsMedium() {
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
-           reset();
+           artists_list = [];
+           artists_pics = [];
+           
            for(var i=0; i < data.items.length; i++) {
                artists_list.push(data.items[i].name);
            }   
@@ -74,12 +78,14 @@ function getArtistsMedium() {
 }
 
 function getArtistsLong() {
-    reset();
     $.ajax({
        url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
+           artists_list = [];
+           artists_pics = [];
+           
            for(var i=0; i < data.items.length; i++) {
                artists_list.push(data.items[i].name);
            }   
@@ -99,7 +105,7 @@ function getTracksShort() {
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
-           
+           tracks_list = [];
            for(var i=0; i < data.items.length; i++) {
                tracks_list.push({name:data.items[i].name, artist:data.items[i].album.artists[0].name});
            }
@@ -116,7 +122,7 @@ function getTracksMedium() {
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
-           
+           tracks_list = [];
            for(var i=0; i < data.items.length; i++) {
                tracks_list.push({name:data.items[i].name, artist:data.items[i].album.artists[0].name});
            }
@@ -133,7 +139,7 @@ function getTracksLong() {
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
-           
+           tracks_list = [];
            for(var i=0; i < data.items.length; i++) {
                tracks_list.push({name:data.items[i].name, artist:data.items[i].album.artists[0].name});
            }
@@ -230,12 +236,6 @@ function longbtn() {
     document.getElementById("medium_btn").classList.remove("active");
     document.getElementById("long_btn").classList.add("active");
     getArtistsLong();
-}
-
-function reset() {
-    artists_list = [];
-    artists_pics = [];
-    tracks_list = [];
 }
 
     ReactDOM.render(
