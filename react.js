@@ -1,5 +1,4 @@
 var artists_list = [];
-var artists_pics = [];
 var tracks_list = [];
 
 var user;
@@ -58,14 +57,9 @@ function getArtistsShort() {
         },
         success: function success(data) {
             artists_list = [];
-            artists_pics = [];
 
             for (var i = 0; i < data.items.length; i++) {
-                artists_list.push(data.items[i].name);
-            }
-
-            for (var i = 0; i < data.items.length; i++) {
-                artists_pics.push(data.items[i].images[0].url);
+                artists_list.push({ name: data.items[i].name, pic: data.items[i].images[0].url });
             }
 
             getTracksShort();
@@ -82,14 +76,9 @@ function getArtistsMedium() {
         },
         success: function success(data) {
             artists_list = [];
-            artists_pics = [];
 
             for (var i = 0; i < data.items.length; i++) {
-                artists_list.push(data.items[i].name);
-            }
-
-            for (var i = 0; i < data.items.length; i++) {
-                artists_pics.push(data.items[i].images[0].url);
+                artists_list.push({ name: data.items[i].name, pic: data.items[i].images[0].url });
             }
 
             getTracksMedium();
@@ -106,14 +95,9 @@ function getArtistsLong() {
         },
         success: function success(data) {
             artists_list = [];
-            artists_pics = [];
 
             for (var i = 0; i < data.items.length; i++) {
-                artists_list.push(data.items[i].name);
-            }
-
-            for (var i = 0; i < data.items.length; i++) {
-                artists_pics.push(data.items[i].images[0].url);
+                artists_list.push({ name: data.items[i].name, pic: data.items[i].images[0].url });
             }
 
             getTracksLong();
@@ -185,7 +169,7 @@ function Artist(props) {
         React.createElement(
             'div',
             { className: 'col tile entry' },
-            React.createElement('img', { src: props.avatarUrl, className: 'artist_img' }),
+            React.createElement('img', { src: props.pic, className: 'artist_img' }),
             ' ',
             React.createElement(
                 'h2',
@@ -259,8 +243,8 @@ function populate() {
     var top_artists = [];
     for (var i = 0; i < artists_list.length; i++) {
         top_artists.push(React.createElement(Artist, {
-            name: artists_list[i],
-            avatarUrl: artists_pics[i]
+            name: artists_list[i].name,
+            pic: artists_list[i].pic
         }));
     }
 
@@ -281,7 +265,7 @@ function populate() {
             'My Top Artists'
         ),
         top_artists
-    ), document.getElementById('root'));
+    ), document.getElementById('top_artists'));
 
     ReactDOM.render(React.createElement(
         'div',
@@ -292,7 +276,7 @@ function populate() {
             'My Top Tracks'
         ),
         top_tracks
-    ), document.getElementById('root2'));
+    ), document.getElementById('top_tracks'));
 
     ReactDOM.render(React.createElement(
         'div',
@@ -329,7 +313,7 @@ function populate() {
                 )
             )
         )
-    ), document.getElementById('root4'));
+    ), document.getElementById('login'));
 }
 
 function shortbtn() {
@@ -365,6 +349,6 @@ ReactDOM.render(React.createElement(
             'Connect with Spotify'
         )
     )
-), document.getElementById('root4'));
+), document.getElementById('login'));
 
 getArtistsShort();

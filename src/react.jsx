@@ -1,5 +1,4 @@
 var artists_list = [];
-var artists_pics = [];
 var tracks_list = [];
 
 var user;
@@ -59,15 +58,10 @@ function getArtistsShort() {
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
             artists_list = [];
-            artists_pics = [];
            
            for(var i=0; i < data.items.length; i++) {
-               artists_list.push(data.items[i].name);
-           }   
-
-           for(var i=0; i < data.items.length; i++) {
-               artists_pics.push(data.items[i].images[0].url);
-           } 
+               artists_list.push({name:data.items[i].name, pic: data.items[i].images[0].url});
+           }
 
            getTracksShort();
        }
@@ -81,15 +75,10 @@ function getArtistsMedium() {
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
            artists_list = [];
-           artists_pics = [];
            
            for(var i=0; i < data.items.length; i++) {
-               artists_list.push(data.items[i].name);
-           }   
-
-           for(var i=0; i < data.items.length; i++) {
-               artists_pics.push(data.items[i].images[0].url);
-           } 
+               artists_list.push({name:data.items[i].name, pic: data.items[i].images[0].url});
+           }
 
            getTracksMedium();
        }
@@ -103,15 +92,10 @@ function getArtistsLong() {
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
            artists_list = [];
-           artists_pics = [];
            
            for(var i=0; i < data.items.length; i++) {
-               artists_list.push(data.items[i].name);
-           }   
-
-           for(var i=0; i < data.items.length; i++) {
-               artists_pics.push(data.items[i].images[0].url);
-           }            
+               artists_list.push({name:data.items[i].name, pic: data.items[i].images[0].url});
+           }           
            
             getTracksLong();
        }
@@ -173,7 +157,7 @@ function Artist(props) {
     return (     
         <div className="row">
             <div className = "col tile entry">
-                <img src={props.avatarUrl} className="artist_img" /> <h2 className="text">{props.name}</h2>
+                <img src={props.pic} className="artist_img" /> <h2 className="text">{props.name}</h2>
             </div>
         </div>  
     );
@@ -210,8 +194,8 @@ function populate() {
     var top_artists = [];
     for(var i=0; i < artists_list.length; i++) {
         top_artists.push(<Artist
-        name={artists_list[i]}
-        avatarUrl={artists_pics[i]}
+        name={artists_list[i].name}
+        pic={artists_list[i].pic}
         />);
     }
     
@@ -228,7 +212,7 @@ function populate() {
                 <h1>My Top Artists</h1>
                 {top_artists}
             </div>,
-      document.getElementById('root'),  
+      document.getElementById('top_artists'),  
     );
     
     ReactDOM.render(
@@ -236,7 +220,7 @@ function populate() {
                 <h1>My Top Tracks</h1>
                 {top_tracks}
             </div>,
-      document.getElementById('root2') 
+      document.getElementById('top_tracks') 
     );
     
     ReactDOM.render(
@@ -256,7 +240,7 @@ function populate() {
             </div>
         </div>
         </div>,
-      document.getElementById('root4'),  
+      document.getElementById('login'),  
     );     
 }
 
@@ -287,7 +271,7 @@ function longbtn() {
                 <button type="button" id = "login_btn" className="btn btn-outline-success active">Connect with Spotify</button>
             </div>
         </div>,
-      document.getElementById('root4'),  
+      document.getElementById('login'),  
     );
 
 getArtistsShort();
