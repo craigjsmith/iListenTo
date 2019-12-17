@@ -18,7 +18,6 @@ window.location.hash = '';
 
 // Returned token from callbackURl
 var _token = hash.access_token;
-console.log(_token);
 
 // Parameters for implicit granted authorization request
 const clientId = '1e792d2947a6401b947116a83dc9c3a9';
@@ -45,15 +44,13 @@ function getUser() {
            var pic = data.images[0].url; 
            
            user = {name:name, pic:pic};
-           
-           console.log(user.name);
        }
     });
 }
 
 function getArtistsShort() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term",
+       url: "https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=50",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -70,7 +67,7 @@ function getArtistsShort() {
 
 function getArtistsMedium() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term",
+       url: "https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=50",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -87,7 +84,7 @@ function getArtistsMedium() {
 
 function getArtistsLong() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term",
+       url: "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -104,7 +101,7 @@ function getArtistsLong() {
 
 function getTracksShort() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
+       url: "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -113,7 +110,6 @@ function getTracksShort() {
                tracks_list.push({name:data.items[i].name, artist:data.items[i].album.artists[0].name});
            }
            
-           console.log(tracks_list);
            populate();
        }
     });
@@ -121,7 +117,7 @@ function getTracksShort() {
 
 function getTracksMedium() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term",
+       url: "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=50",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -130,7 +126,6 @@ function getTracksMedium() {
                tracks_list.push({name:data.items[i].name, artist:data.items[i].album.artists[0].name});
            }
            
-           console.log(tracks_list);
            populate();
        }
     });
@@ -138,7 +133,7 @@ function getTracksMedium() {
 
 function getTracksLong() {
     $.ajax({
-       url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term",
+       url: "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50",
        type: "GET",
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
@@ -147,7 +142,6 @@ function getTracksLong() {
                tracks_list.push({name:data.items[i].name, artist:data.items[i].album.artists[0].name});
            }
            
-           console.log(tracks_list);
            populate();
        }
     });
@@ -158,7 +152,7 @@ function User(props) {
         <div>
         <div className="row">
             <div className = "col-12 tile entry">
-                <img src={props.pic} className="artist_img" /> <h2 className="textNoFlex"><i class="fab fa-spotify"></i> {props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
+                <img src={props.pic} className="artist_img" /> <h2 className="textNoFlex"><i className="fab fa-spotify"></i> {props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
             </div>
         </div>  
             </div>
