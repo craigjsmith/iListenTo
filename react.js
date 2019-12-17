@@ -162,24 +162,6 @@ function getTracksLong() {
     });
 }
 
-function Artist(props) {
-    return React.createElement(
-        'div',
-        { className: 'row' },
-        React.createElement(
-            'div',
-            { className: 'col tile entry' },
-            React.createElement('img', { src: props.pic, className: 'artist_img' }),
-            ' ',
-            React.createElement(
-                'h2',
-                { className: 'text' },
-                props.name
-            )
-        )
-    );
-}
-
 function User(props) {
     return React.createElement(
         'div',
@@ -194,7 +176,7 @@ function User(props) {
                 ' ',
                 React.createElement(
                     'h2',
-                    { className: 'text2' },
+                    { className: 'textNoFlex' },
                     React.createElement('i', { 'class': 'fab fa-spotify' }),
                     ' ',
                     props.name,
@@ -212,6 +194,28 @@ function User(props) {
     );
 }
 
+function Artist(props) {
+    return React.createElement(
+        'div',
+        { className: 'row' },
+        React.createElement(
+            'div',
+            { className: 'col tile entry' },
+            React.createElement(
+                'h2',
+                { className: 'number text' },
+                props.number
+            ),
+            React.createElement('img', { src: props.pic, className: 'artist_img' }),
+            React.createElement(
+                'h2',
+                { className: 'text' },
+                props.name
+            )
+        )
+    );
+}
+
 function Track(props) {
     return React.createElement(
         'div',
@@ -220,21 +224,22 @@ function Track(props) {
             'div',
             { className: 'col tile entry' },
             React.createElement(
+                'h2',
+                { className: 'number text' },
+                props.number
+            ),
+            React.createElement(
                 'div',
-                { className: 'row' },
+                { className: 'col noPad' },
                 React.createElement(
-                    'div',
-                    { className: 'col' },
-                    React.createElement(
-                        'h2',
-                        { className: 'text' },
-                        props.name
-                    ),
-                    React.createElement(
-                        'h3',
-                        { className: 'text' },
-                        props.artist
-                    )
+                    'h2',
+                    { className: 'text' },
+                    props.name
+                ),
+                React.createElement(
+                    'h3',
+                    { className: 'text' },
+                    props.artist
                 )
             )
         )
@@ -246,7 +251,8 @@ function populate() {
     for (var i = 0; i < artists_list.length; i++) {
         top_artists.push(React.createElement(Artist, {
             name: artists_list[i].name,
-            pic: artists_list[i].pic
+            pic: artists_list[i].pic,
+            number: i + 1
         }));
     }
 
@@ -254,7 +260,8 @@ function populate() {
     for (var i = 0; i < tracks_list.length; i++) {
         top_tracks.push(React.createElement(Track, {
             name: tracks_list[i].name,
-            artist: tracks_list[i].artist
+            artist: tracks_list[i].artist,
+            number: i + 1
         }));
     }
 

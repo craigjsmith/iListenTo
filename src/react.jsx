@@ -153,25 +153,27 @@ function getTracksLong() {
     });
 }
 
-function Artist(props) {
-    return (     
-        <div className="row">
-            <div className = "col tile entry">
-                <img src={props.pic} className="artist_img" /> <h2 className="text">{props.name}</h2>
-            </div>
-        </div>  
-    );
-}
-
 function User(props) {
     return (    
         <div>
         <div className="row">
             <div className = "col-12 tile entry">
-                <img src={props.pic} className="artist_img" /> <h2 className="text2"><i class="fab fa-spotify"></i> {props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
+                <img src={props.pic} className="artist_img" /> <h2 className="textNoFlex"><i class="fab fa-spotify"></i> {props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
             </div>
         </div>  
             </div>
+    );
+}
+
+function Artist(props) {
+    return (     
+        <div className="row">
+            <div className = "col tile entry">
+                <h2 className="number text">{props.number}</h2>
+                <img src={props.pic} className="artist_img" />
+                <h2 className="text">{props.name}</h2>
+            </div>
+        </div>  
     );
 }
 
@@ -179,12 +181,11 @@ function Track(props) {
     return (     
         <div className="row">
             <div className = "col tile entry">
-                <div className="row">
-                    <div className = "col">
-                    <h2 className="text">{props.name}</h2> 
-                    <h3 className="text">{props.artist}</h3> 
+                    <h2 className="number text">{props.number}</h2>
+                    <div className = "col noPad">
+                        <h2 className="text">{props.name}</h2> 
+                        <h3 className="text">{props.artist}</h3> 
                     </div>   
-                </div>
             </div>
         </div>  
     );
@@ -196,6 +197,7 @@ function populate() {
         top_artists.push(<Artist
         name={artists_list[i].name}
         pic={artists_list[i].pic}
+        number={i+1}
         />);
     }
     
@@ -204,6 +206,7 @@ function populate() {
         top_tracks.push(<Track
         name={tracks_list[i].name}
         artist={tracks_list[i].artist}
+        number={i+1}                    
         />);
     }    
     
