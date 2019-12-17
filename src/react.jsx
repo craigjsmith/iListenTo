@@ -168,7 +168,7 @@ function User(props) {
         <div>
         <div className="row">
             <div className = "col-12 tile entry">
-                <img src={props.pic} className="artist_img" /> <h2 className="text2">{props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
+                <img src={props.pic} className="artist_img" /> <h2 className="text2"><i class="fab fa-spotify"></i> {props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
             </div>
         </div>  
             </div>
@@ -266,9 +266,9 @@ function longbtn() {
 }
 
     ReactDOM.render(
-        <div className = "row" style = {{textAlign: "center"}}>
+        <div className = "row" style = {{textAlign: "center", margin: "0",}}>
             <div className = "col">
-                <button type="button" id = "login_btn" className="btn btn-outline-success active">Connect with Spotify</button>
+                <button type="button" id = "login_btn" className="btn btn-outline-success active"><i className="fab fa-spotify"></i> Connect with Spotify</button>
             </div>
         </div>,
       document.getElementById('login'),  

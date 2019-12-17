@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Karla', sans-serif;
 }
 
 body {
@@ -42,7 +43,7 @@ h4 {
 
 h5 {
     color: white !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     text-align: center;
 }
 
@@ -50,6 +51,11 @@ a {
     color: #1DB954 !important;
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
+}
+
+.hidden {
+    color: white !important;
+    text-decoration: none !important;
 }
 
 a:hover {
@@ -127,6 +133,13 @@ a:hover {
 #login {
     padding-top: 25px;
     padding-bottom: 25px;    
+}
+
+.abscenter {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    align-items: center;
 }
 
 .logout {

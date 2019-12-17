@@ -195,6 +195,8 @@ function User(props) {
                 React.createElement(
                     'h2',
                     { className: 'text2' },
+                    React.createElement('i', { 'class': 'fab fa-spotify' }),
+                    ' ',
                     props.name,
                     ' ',
                     React.createElement('br', null),
@@ -339,14 +341,15 @@ function longbtn() {
 
 ReactDOM.render(React.createElement(
     'div',
-    { className: 'row', style: { textAlign: "center" } },
+    { className: 'row', style: { textAlign: "center", margin: "0" } },
     React.createElement(
         'div',
         { className: 'col' },
         React.createElement(
             'button',
             { type: 'button', id: 'login_btn', className: 'btn btn-outline-success active' },
-            'Connect with Spotify'
+            React.createElement('i', { className: 'fab fa-spotify' }),
+            ' Connect with Spotify'
         )
     )
 ), document.getElementById('login'));
