@@ -27,6 +27,7 @@ h2 {
     text-align: center;
     color: white !important;
     font-size: 16pt !important;
+    font-family: 'Raleway', sans-serif !important;
 }
 
 h3 {
@@ -45,6 +46,7 @@ h5 {
     color: white !important;
     font-size: 12pt !important;
     text-align: center;
+    font-family: 'Raleway', sans-serif !important;
 }
 
 a {
@@ -161,4 +163,5 @@ a:hover {
     width: 50px !important;
     min-width: 50px !important;
     color: white !important;
+    font-family: 'Raleway', sans-serif !important;
 }
