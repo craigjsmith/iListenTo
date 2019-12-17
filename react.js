@@ -18,7 +18,7 @@ var _token = hash.access_token;
 
 // Parameters for implicit granted authorization request
 var clientId = '1e792d2947a6401b947116a83dc9c3a9';
-var redirectUri = 'http://ilistento.net';
+var redirectUri = 'http://localhost:8080';
 var scopes = ['user-top-read'];
 
 // If there's no token, redirect to Spotify to retrieve one

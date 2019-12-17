@@ -76,6 +76,13 @@ a:hover {
     padding-left: 15px;    
 }
 
+.textBlock {
+    display: block; 
+    text-align: left;
+    align-items: center;  /*Aligns vertically center */  
+    padding-left: 15px;    
+}
+
 .textNoFlex {
     text-align: left;
     align-items: center;  /*Aligns vertically center */  
@@ -113,9 +120,11 @@ a:hover {
 }
 
 .artist_img {
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
+    height: 100px !important;
+    width: 100px !important;
+    min-height: 100px !important;
+    min-width: 100px !important;    
+    object-fit: cover !important;
     border-radius: 50%;
 }
 
@@ -149,9 +158,7 @@ a:hover {
 }
 
 .number {
-    width: 35px !important;
-    margin: 0;
-    padding: 0;
-    padding-right: 20px;
-    color: lightgray;
+    width: 50px !important;
+    min-width: 50px !important;
+    color: white !important;
 }
