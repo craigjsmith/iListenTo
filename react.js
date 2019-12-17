@@ -19,7 +19,7 @@ console.log(_token);
 
 // Parameters for implicit granted authorization request
 var clientId = '1e792d2947a6401b947116a83dc9c3a9';
-var redirectUri = 'http://192.168.2.25:8080';
+var redirectUri = 'http://ilistento.net';
 var scopes = ['user-top-read'];
 
 // If there's no token, redirect to Spotify to retrieve one
@@ -201,7 +201,7 @@ function User(props) {
                     ' ',
                     React.createElement(
                         'a',
-                        { 'class': 'logout', href: 'javascript:history.go(0)' },
+                        { 'class': 'logout', href: 'index.html' },
                         '(Logout)'
                     )
                 )

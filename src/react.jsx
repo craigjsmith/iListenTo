@@ -22,7 +22,7 @@ console.log(_token);
 
 // Parameters for implicit granted authorization request
 const clientId = '1e792d2947a6401b947116a83dc9c3a9';
-const redirectUri = 'http://192.168.2.25:8080';
+const redirectUri = 'http://ilistento.net';
 const scopes = [
   'user-top-read'
 ];
@@ -168,7 +168,7 @@ function User(props) {
         <div>
         <div className="row">
             <div className = "col-12 tile entry">
-                <img src={props.pic} className="artist_img" /> <h2 className="text2">{props.name} <br></br> <a class = "logout" href = "javascript:history.go(0)">(Logout)</a></h2>
+                <img src={props.pic} className="artist_img" /> <h2 className="text2">{props.name} <br></br> <a class = "logout" href = "index.html">(Logout)</a></h2>
             </div>
         </div>  
             </div>

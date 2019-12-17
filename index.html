@@ -2,29 +2,30 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <title>i Listen To - Listening Statistics for Spotify</title>
     <link rel="stylesheet" href="style.css" />
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css" />
     
+    <!-- AJAX -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
-    <script
-			  src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			  crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    
-        <div class = "title row">
-            <div class = "col">
-                <h1 class = "head">i Listen To</h1>
-                <h2>Listening Statistics for Spotify</h2>
-            </div>
+    <div class = "title row">
+        <div class = "col">
+            <h1 class = "head">i Listen To</h1>
+            <h2>Listening Statistics for Spotify</h2>
         </div>
+    </div>
     
     <div class="container">
-        
         <div id = "login"></div>
         
         <div class="row">
@@ -52,12 +53,13 @@
         getToken();
     });             
     </script>
-    
 </body>
     
 <footer>
-    <h4>Created by <a href = "https://craigsmith.dev">Craig Smith</a></h4>
-    <h5>Data is collected from the Spotify Web API. This site is not affiliated with Spotify AB.</h5>
+    <div class="container-fluid">
+        <h4>Created by <a href = "https://craigsmith.dev">Craig Smith</a></h4>
+        <h5>Data is collected from the Spotify Web API. This site is not affiliated with Spotify AB.</h5>
+    </div>
 </footer>
 
 </html>
