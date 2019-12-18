@@ -3,7 +3,7 @@ Listening Statistics for Spotify
 
 ![Device screenshots](screenshot.png)
 
-i Listen To allows Spotify users to see their top listened to artists and tracks of the last 4 weeks, 6 months, and all time. This information is accessible through the Spotify Web API, which is authenticated with an Implicit-Grant authentication flow.
+iListenTo allows Spotify users to see their top listened to artists and tracks of the last 4 weeks, 6 months, and all time. This information is accessible through the Spotify Web API, which is authenticated with an Implicit-Grant authentication flow.
 
 ## Technologies
 * JavaScript
