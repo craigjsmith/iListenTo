@@ -38,7 +38,12 @@ function getUser() {
         },
         success: function success(data) {
             var name = data.display_name;
-            var pic = data.images[0].url;
+            var pic = "profile.png";
+
+            // Retrieve user's profile piture if they have one
+            try {
+                var pic = data.images[0].url;
+            } catch (e) {}
 
             user = { name: name, pic: pic };
         }
@@ -300,8 +305,8 @@ function populate() {
                     { className: 'btn-group', role: 'group' },
                     React.createElement(
                         'button',
-                        { type: 'button', id: 'short_btn', onClick: shortbtn, className: 'btn btn-outline-success active' },
-                        '4 weeks'
+                        { type: 'buttzon', id: 'short_btn', onClick: shortbtn, className: 'btn btn-outline-success active' },
+                        '30 days'
                     ),
                     React.createElement(
                         'button',

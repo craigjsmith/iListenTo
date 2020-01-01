@@ -41,7 +41,12 @@ function getUser() {
        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
        success: function(data) { 
            var name = data.display_name;
-           var pic = data.images[0].url; 
+           var pic = "profile.png";
+           
+           // Retrieve user's profile piture if they have one
+           try {
+              var pic = data.images[0].url; 
+           } catch(e) {}
            
            user = {name:name, pic:pic};
        }
@@ -230,7 +235,7 @@ function populate() {
         <div className = "row toggle">
             <div className = "col">
                 <div className="btn-group" role="group">
-                    <button type="button" id = "short_btn" onClick = {shortbtn} className="btn btn-outline-success active">4 weeks</button>
+                    <button type="buttzon" id = "short_btn" onClick = {shortbtn} className="btn btn-outline-success active">30 days</button>
                     <button type="button" id = "medium_btn" onClick = {mediumbtn} className="btn btn-outline-success">6 months</button>
                     <button type="button" id = "long_btn" onClick = {longbtn} className="btn btn-outline-success">All time</button>
                 </div>
