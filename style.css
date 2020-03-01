@@ -75,20 +75,23 @@ a:hover {
     display: flex; 
     text-align: left;
     align-items: center;  /*Aligns vertically center */  
-    padding-left: 15px;    
+    padding-left: 15px;  
+    word-wrap: anywhere !important;
 }
 
 .textBlock {
     display: block; 
     text-align: left;
     align-items: center;  /*Aligns vertically center */  
-    padding-left: 15px;    
+    padding-left: 15px;   
+    word-wrap: break-word !important;
 }
 
 .textNoFlex {
     text-align: left;
     align-items: center;  /*Aligns vertically center */  
-    padding-left: 15px;    
+    padding-left: 15px;  
+    word-wrap: break-word !important;
 }
 
 .title {
