@@ -18,13 +18,13 @@ var _token = hash.access_token;
 
 // Parameters for implicit granted authorization request
 var clientId = '1e792d2947a6401b947116a83dc9c3a9';
-var redirectUri = 'http://ilistento.net';
-var scopes = ['user-top-read'];
+var redirectUri = 'https://v0xce7s8uk.execute-api.us-east-2.amazonaws.com/live/token';
+var scopes = ['user-top-read', 'user-read-recently-played'];
 
 // If there's no token, redirect to Spotify to retrieve one
 function getToken() {
     if (!_token) {
-        window.location = 'https://accounts.spotify.com/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&scope=' + scopes.join('%20') + '&response_type=token&show_dialog=true';
+        window.location = 'https://accounts.spotify.com/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&scope=' + scopes.join('%20') + '&response_type=code&show_dialog=true';
     }
 }
 
