@@ -18,7 +18,7 @@ var _token = hash.access_token;
 
 // Parameters for implicit granted authorization request
 var clientId = '1e792d2947a6401b947116a83dc9c3a9';
-var redirectUri = 'http://ilistento.net';
+var redirectUri = 'http://127.0.0.1:5500';
 var scopes = ['user-top-read'];
 
 // If there's no token, redirect to Spotify to retrieve one
@@ -61,7 +61,14 @@ function getArtistsShort() {
             artists_list = [];
 
             for (var i = 0; i < data.items.length; i++) {
-                artists_list.push({ name: data.items[i].name, pic: data.items[i].images[0].url });
+                var pic = "profile.png";
+
+                // Retrieve artist's piture if they have one
+                try {
+                    var pic = data.items[i].images[0].url;
+                } catch (e) {}
+
+                artists_list.push({ name: data.items[i].name, pic: pic });
             }
 
             getTracksShort();
@@ -79,8 +86,17 @@ function getArtistsMedium() {
         success: function success(data) {
             artists_list = [];
 
+            console.log(data);
+
             for (var i = 0; i < data.items.length; i++) {
-                artists_list.push({ name: data.items[i].name, pic: data.items[i].images[0].url });
+                var pic = "profile.png";
+
+                // Retrieve artist's piture if they have one
+                try {
+                    var pic = data.items[i].images[0].url;
+                } catch (e) {}
+
+                artists_list.push({ name: data.items[i].name, pic: pic });
             }
 
             getTracksMedium();
@@ -99,7 +115,14 @@ function getArtistsLong() {
             artists_list = [];
 
             for (var i = 0; i < data.items.length; i++) {
-                artists_list.push({ name: data.items[i].name, pic: data.items[i].images[0].url });
+                var pic = "profile.png";
+
+                // Retrieve artist's piture if they have one
+                try {
+                    var pic = data.items[i].images[0].url;
+                } catch (e) {}
+
+                artists_list.push({ name: data.items[i].name, pic: pic });
             }
 
             getTracksLong();
@@ -116,6 +139,9 @@ function getTracksShort() {
         },
         success: function success(data) {
             tracks_list = [];
+
+            console.log(data);
+
             for (var i = 0; i < data.items.length; i++) {
                 tracks_list.push({ name: data.items[i].name, artist: data.items[i].album.artists[0].name });
             }
@@ -134,6 +160,9 @@ function getTracksMedium() {
         },
         success: function success(data) {
             tracks_list = [];
+
+            console.log(data);
+
             for (var i = 0; i < data.items.length; i++) {
                 tracks_list.push({ name: data.items[i].name, artist: data.items[i].album.artists[0].name });
             }
@@ -155,6 +184,8 @@ function getTracksLong() {
             for (var i = 0; i < data.items.length; i++) {
                 tracks_list.push({ name: data.items[i].name, artist: data.items[i].album.artists[0].name });
             }
+
+            console.log(data);
 
             populate();
         }
